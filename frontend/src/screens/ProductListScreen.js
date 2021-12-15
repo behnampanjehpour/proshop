@@ -10,24 +10,24 @@ import {
   deleteProduct,
   createProduct,
 } from '../actions/productActions'
-import { PRODUCT_CREATE_RESET } from '../constants/productConstant'
+import { PRODUCT_CREATE_RESET } from '../constants/productConstants'
 
 const ProductListScreen = ({ history, match }) => {
   const pageNumber = match.params.pageNumber || 1
 
   const dispatch = useDispatch()
 
-  const productList = useSelector(state => state.productList)
+  const productList = useSelector((state) => state.productList)
   const { loading, error, products, page, pages } = productList
 
-  const productDelete = useSelector(state => state.productDelete)
+  const productDelete = useSelector((state) => state.productDelete)
   const {
     loading: loadingDelete,
     error: errorDelete,
     success: successDelete,
   } = productDelete
 
-  const productCreate = useSelector(state => state.productCreate)
+  const productCreate = useSelector((state) => state.productCreate)
   const {
     loading: loadingCreate,
     error: errorCreate,
@@ -35,7 +35,7 @@ const ProductListScreen = ({ history, match }) => {
     product: createdProduct,
   } = productCreate
 
-  const userLogin = useSelector(state => state.userLogin)
+  const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
   useEffect(() => {
@@ -60,7 +60,7 @@ const ProductListScreen = ({ history, match }) => {
     pageNumber,
   ])
 
-  const deleteHandler = id => {
+  const deleteHandler = (id) => {
     if (window.confirm('Are you sure')) {
       dispatch(deleteProduct(id))
     }
@@ -104,7 +104,7 @@ const ProductListScreen = ({ history, match }) => {
               </tr>
             </thead>
             <tbody>
-              {products.map(product => (
+              {products.map((product) => (
                 <tr key={product._id}>
                   <td>{product._id}</td>
                   <td>{product.name}</td>

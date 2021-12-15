@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Form, Col, Button, Row } from 'react-bootstrap'
+import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import Loader from '../components/Loader'
 import Message from '../components/Message'
-import { login } from '../actions/userActions'
+import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
+import { login } from '../actions/userActions'
 
 const LoginScreen = ({ location, history }) => {
   const [email, setEmail] = useState('')
@@ -13,7 +13,7 @@ const LoginScreen = ({ location, history }) => {
 
   const dispatch = useDispatch()
 
-  const userLogin = useSelector(state => state.userLogin)
+  const userLogin = useSelector((state) => state.userLogin)
   const { loading, error, userInfo } = userLogin
 
   const redirect = location.search ? location.search.split('=')[1] : '/'
@@ -24,7 +24,7 @@ const LoginScreen = ({ location, history }) => {
     }
   }, [history, userInfo, redirect])
 
-  const submitHandler = e => {
+  const submitHandler = (e) => {
     e.preventDefault()
     dispatch(login(email, password))
   }
@@ -41,7 +41,7 @@ const LoginScreen = ({ location, history }) => {
             type='email'
             placeholder='Enter email'
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
           ></Form.Control>
         </Form.Group>
 
@@ -51,7 +51,7 @@ const LoginScreen = ({ location, history }) => {
             type='password'
             placeholder='Enter password'
             value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
           ></Form.Control>
         </Form.Group>
 

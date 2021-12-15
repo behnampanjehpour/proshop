@@ -1,8 +1,8 @@
 import express from 'express'
 const router = express.Router()
 import {
-  getProductById,
   getProducts,
+  getProductById,
   deleteProduct,
   createProduct,
   updateProduct,
@@ -19,4 +19,5 @@ router
   .get(getProductById)
   .delete(protect, admin, deleteProduct)
   .put(protect, admin, updateProduct)
+
 export default router

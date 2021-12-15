@@ -2,8 +2,8 @@ import express from 'express'
 const router = express.Router()
 import {
   authUser,
-  getUserProfile,
   registerUser,
+  getUserProfile,
   updateUserProfile,
   getUsers,
   deleteUser,
@@ -18,7 +18,6 @@ router
   .route('/profile')
   .get(protect, getUserProfile)
   .put(protect, updateUserProfile)
-
 router
   .route('/:id')
   .delete(protect, admin, deleteUser)

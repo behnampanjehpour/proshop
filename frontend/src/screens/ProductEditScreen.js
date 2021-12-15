@@ -7,7 +7,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
 import { listProductDetails, updateProduct } from '../actions/productActions'
-import { PRODUCT_UPDATE_RESET } from '../constants/productConstant'
+import { PRODUCT_UPDATE_RESET } from '../constants/productConstants'
 
 const ProductEditScreen = ({ match, history }) => {
   const productId = match.params.id
@@ -23,10 +23,10 @@ const ProductEditScreen = ({ match, history }) => {
 
   const dispatch = useDispatch()
 
-  const productDetails = useSelector(state => state.productDetails)
+  const productDetails = useSelector((state) => state.productDetails)
   const { loading, error, product } = productDetails
 
-  const productUpdate = useSelector(state => state.productUpdate)
+  const productUpdate = useSelector((state) => state.productUpdate)
   const {
     loading: loadingUpdate,
     error: errorUpdate,
@@ -52,18 +52,21 @@ const ProductEditScreen = ({ match, history }) => {
     }
   }, [dispatch, history, productId, product, successUpdate])
 
-  const uploadFileHandler = async e => {
+  const uploadFileHandler = async (e) => {
     const file = e.target.files[0]
     const formData = new FormData()
     formData.append('image', file)
     setUploading(true)
+
     try {
       const config = {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       }
+
       const { data } = await axios.post('/api/upload', formData, config)
+
       setImage(data)
       setUploading(false)
     } catch (error) {
@@ -72,7 +75,7 @@ const ProductEditScreen = ({ match, history }) => {
     }
   }
 
-  const submitHandler = e => {
+  const submitHandler = (e) => {
     e.preventDefault()
     dispatch(
       updateProduct({
@@ -109,7 +112,7 @@ const ProductEditScreen = ({ match, history }) => {
                 type='name'
                 placeholder='Enter name'
                 value={name}
-                onChange={e => setName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
@@ -119,7 +122,7 @@ const ProductEditScreen = ({ match, history }) => {
                 type='number'
                 placeholder='Enter price'
                 value={price}
-                onChange={e => setPrice(e.target.value)}
+                onChange={(e) => setPrice(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
@@ -129,7 +132,7 @@ const ProductEditScreen = ({ match, history }) => {
                 type='text'
                 placeholder='Enter image url'
                 value={image}
-                onChange={e => setImage(e.target.value)}
+                onChange={(e) => setImage(e.target.value)}
               ></Form.Control>
               <Form.File
                 id='image-file'
@@ -146,7 +149,7 @@ const ProductEditScreen = ({ match, history }) => {
                 type='text'
                 placeholder='Enter brand'
                 value={brand}
-                onChange={e => setBrand(e.target.value)}
+                onChange={(e) => setBrand(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
@@ -156,7 +159,7 @@ const ProductEditScreen = ({ match, history }) => {
                 type='number'
                 placeholder='Enter countInStock'
                 value={countInStock}
-                onChange={e => setCountInStock(e.target.value)}
+                onChange={(e) => setCountInStock(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
@@ -166,7 +169,7 @@ const ProductEditScreen = ({ match, history }) => {
                 type='text'
                 placeholder='Enter category'
                 value={category}
-                onChange={e => setCategory(e.target.value)}
+                onChange={(e) => setCategory(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
@@ -176,7 +179,7 @@ const ProductEditScreen = ({ match, history }) => {
                 type='text'
                 placeholder='Enter description'
                 value={description}
-                onChange={e => setDescription(e.target.value)}
+                onChange={(e) => setDescription(e.target.value)}
               ></Form.Control>
             </Form.Group>
 

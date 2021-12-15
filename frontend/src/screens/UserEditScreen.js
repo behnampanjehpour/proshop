@@ -6,7 +6,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
 import { getUserDetails, updateUser } from '../actions/userActions'
-import { USER_UPDATE_RESET } from '../constants/userConstant'
+import { USER_UPDATE_RESET } from '../constants/userConstants'
 
 const UserEditScreen = ({ match, history }) => {
   const userId = match.params.id
@@ -17,10 +17,10 @@ const UserEditScreen = ({ match, history }) => {
 
   const dispatch = useDispatch()
 
-  const userDetails = useSelector(state => state.userDetails)
+  const userDetails = useSelector((state) => state.userDetails)
   const { loading, error, user } = userDetails
 
-  const userUpdate = useSelector(state => state.userUpdate)
+  const userUpdate = useSelector((state) => state.userUpdate)
   const {
     loading: loadingUpdate,
     error: errorUpdate,
@@ -42,7 +42,7 @@ const UserEditScreen = ({ match, history }) => {
     }
   }, [dispatch, history, userId, user, successUpdate])
 
-  const submitHandler = e => {
+  const submitHandler = (e) => {
     e.preventDefault()
     dispatch(updateUser({ _id: userId, name, email, isAdmin }))
   }
@@ -68,7 +68,7 @@ const UserEditScreen = ({ match, history }) => {
                 type='name'
                 placeholder='Enter name'
                 value={name}
-                onChange={e => setName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
@@ -78,7 +78,7 @@ const UserEditScreen = ({ match, history }) => {
                 type='email'
                 placeholder='Enter email'
                 value={email}
-                onChange={e => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
@@ -87,7 +87,7 @@ const UserEditScreen = ({ match, history }) => {
                 type='checkbox'
                 label='Is Admin'
                 checked={isAdmin}
-                onChange={e => setIsAdmin(e.target.checked)}
+                onChange={(e) => setIsAdmin(e.target.checked)}
               ></Form.Check>
             </Form.Group>
 
